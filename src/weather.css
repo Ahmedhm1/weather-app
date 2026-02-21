@@ -1,0 +1,153 @@
+.weather-box {
+    min-width: 550px;
+    min-height: 300px;
+    background: rgba(152, 222, 255, 0.199);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(128, 215, 255, 0.527);
+    padding: 10px;
+}
+
+@media (max-width: 767px) {
+    .weather-box {
+        min-width: 200px;
+        min-height: 100px;
+    }
+}
+
+.header {
+    display: flex;
+    align-items: end;
+}
+
+.header h1 {
+    padding: 0 20px 0 0;
+    margin: 0;
+    font-size: 50px;
+}
+
+@media (max-width: 767px) {
+    .header h1 {
+        padding: 0 10px 0 0;
+        font-size: 25px;
+    }
+}
+
+.header p {
+    padding: 0 15px 0 0;
+    margin: 0;
+}
+@media (max-width: 767px) {
+    .header p {
+        padding: 0 10px 0 0;
+        font-size: 12px;
+    }
+}
+
+.body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+@media (max-width: 767px) {
+.body {
+    padding: 0 5px;
+    gap: 20px;
+}
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: end;
+    /* margin-right: 20px; */
+}
+
+.degree-box {
+    display: flex;
+    /* gap: 10px; */
+    align-items: end;
+}
+@media (max-width: 767px) {
+.degree-box {
+    align-items: start;
+}
+}
+
+.degree {
+    font-size: 80px;
+    font-weight: 300;
+    padding: 0;
+    margin: 0;
+}
+@media (max-width: 767px) {
+.degree {
+    font-size: 40px;
+}
+}
+
+/* .degree-box img {
+    padding-top: 10px;
+} */
+@media (max-width: 767px) {
+.degree-box img {
+    width: 60px;
+}
+}
+
+.state {
+    margin: 10px 0;
+    font-size: 20px;
+    font-weight: 400;
+}
+@media (max-width: 767px) {
+.state {
+    margin: 5px 0;
+    font-size: 17px;
+}
+}
+
+.min-max {
+    margin: 10px 0 20px;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+@media (max-width: 767px) {
+.min-max {
+    margin: 5px 0 10px;
+    font-size: 12px;
+}
+}
+
+.min-max .separator {
+    margin: 0 10px;
+}
+
+.cloud {
+    width: 200px;
+}
+
+@media (max-width: 767px) {
+    .cloud {
+        width: 100px;
+    }
+}
+
+.lang {
+    background: none;
+    border: none;
+    color: bisque;
+    margin: 10px 5px;
+    padding: 10px;
+    border-radius: 10px;
+    transition-duration: .3s;
+}
+
+.lang:hover {
+    background-color: rgba(128, 128, 128, 0.452);
+}
