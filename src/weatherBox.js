@@ -1,33 +1,40 @@
 import { useWeather } from "./weatherContext"
 import { useLang, useSelectedLang } from "./langContext"
-import "./weather.css"
+import CitiesComponent from "./citiesComponent"
+import CircularProgress from '@mui/material/CircularProgress';
 
-const degree = <sup style={{margin: "0", padding: "0"}}>&#176;</sup>
+import "./weather.css"
+import { useSelectedCity } from "./cityContext"
+
+const degree = <sup style={{ margin: "0", padding: "0" }}>&#176;</sup>
 
 export default function WeatherBox() {
-    const weather = useWeather()
     const [selectedLang, setSelectedLang] = useSelectedLang()
-    const lang = useLang()
+    const weather = useWeather()
+    const selectedCity = useSelectedCity()[0]
+
+    const langs = useLang()
+    const lang = langs[selectedLang]
 
     function handleClickLangButtom() {
         setSelectedLang((selectedLang) => selectedLang === "ar" ? "en" : "ar")
     }
 
     return (
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "end", direction: selectedLang === "ar" ? "rtl" : "ltr" }}>
+        <div style={{ direction: selectedLang === "ar" ? "rtl" : "ltr" }}>
             <div className="weather-box">
                 <div className="header">
-                    <h1>{weather.city}</h1>
+                    <h1>{lang.city[selectedCity]}</h1>
                     {/* <p>مايو 28 2023</p> */}
                     <p>{lang.date}</p>
                 </div>
                 <hr />
                 <div className="body">
                     <div className="info">
-                        <div className="degree-box">
-                            <h2 className="degree">{weather.temp}<sup>&#176;</sup></h2>
+                        {weather.temp ? <div className="degree-box">
+                            <h2 className="degree">{weather.temp}{degree}</h2>
                             <img src={`https://openweathermap.org/payload/api/media/file/${weather.icon}.png`} alt=""></img>
-                        </div>
+                        </div> : <CircularProgress />}
                         <p className="state">{weather.description}</p>
                         <h3 className="min-max" >
                             {lang.tempMin}: {selectedLang === "ar" ? <>{degree}{weather.temp_min}</> : <>{weather.temp_min}{degree}</>}
@@ -38,7 +45,10 @@ export default function WeatherBox() {
                     <img className="cloud" src="Cloud.png" alt=""></img>
                 </div>
             </div>
-            <button className="lang" onClick={handleClickLangButtom}>{selectedLang === "ar" ? "English" : "عربي"}</button>
+            <div className="btn-group">
+                <CitiesComponent />
+                <button className="lang" onClick={handleClickLangButtom}>{selectedLang === "ar" ? "English" : "عربي"}</button>
+            </div>
         </div>
     )
 }

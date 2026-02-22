@@ -12,7 +12,7 @@
 
 @media (max-width: 767px) {
     .weather-box {
-        min-width: 200px;
+        min-width: 300px;
         min-height: 100px;
     }
 }
@@ -121,6 +121,7 @@
 .min-max {
     margin: 5px 0 10px;
     font-size: 12px;
+    font-weight: 300;
 }
 }
 
@@ -138,16 +139,24 @@
     }
 }
 
+.btn-group {
+    margin: 10px 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .lang {
     background: none;
     border: none;
     color: bisque;
-    margin: 10px 5px;
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 5px;
     transition-duration: .3s;
+    margin-right: 5px;
 }
 
-.lang:hover {
-    background-color: rgba(128, 128, 128, 0.452);
+.lang:hover,
+.city:hover {
+    background-color: rgba(128, 215, 255, 0.164);
 }

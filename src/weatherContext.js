@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { useSelectedLang } from "./langContext";
 import axios from "axios"
+import { useCity } from "./cityContext";
 
 const WeatherContext = createContext({})
 
@@ -16,10 +17,13 @@ export function WeatherProvider({ children }) {
         pressure: "",
         city: "",
     })
-    const lang = useSelectedLang()[0]
+    const selectedLang = useSelectedLang()[0]
+
+    const city = useCity()
 
     useEffect(() => {
-        axios.get(`https://api.openweathermap.org/data/2.5/weather?q=Helwan&appid=6503845d1fa979cc8490796738d043ed&units=Metric&lang=${lang}`)
+        setWeather((weather) => {return {...weather, temp: ""}})
+        axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${city.lat}&lon=${city.lon}&appid=6503845d1fa979cc8490796738d043ed&units=Metric&lang=${selectedLang}`)
             .then((response) => {
                 setWeather((weather) => {
                     return {
@@ -38,7 +42,7 @@ export function WeatherProvider({ children }) {
             .catch((error) => {
                 console.log("Error happend, error details:", error)
             })
-    }, [lang])
+    }, [selectedLang, city])
 
     return (
         <WeatherContext.Provider value={weather} >
